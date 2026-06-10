@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+
+# Vercel
+.vercel/
+
+# Dependencies (none currently, but just in case)
+node_modules/
+
+# Internal / dev artifacts — not part of the deployed site
+.image-slots.state.json
+screenshots/
+uploads/
+
+# Claude/dev tooling
+.claude/

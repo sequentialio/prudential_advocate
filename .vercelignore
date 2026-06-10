@@ -1,0 +1,6 @@
+# Internal / build artifacts — must NOT be deployed to the public web root.
+# (uploads/ contains internal planning docs; build/ has templates + scripts.)
+uploads/
+build/
+screenshots/
+.image-slots.state.json

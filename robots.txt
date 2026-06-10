@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /uploads/
+Disallow: /build/
+Disallow: /screenshots/
+
+Sitemap: https://prudentialadvocate.com/sitemap.xml
