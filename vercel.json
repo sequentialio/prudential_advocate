@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "prudential-advocate",
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
@@ -34,11 +33,5 @@
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
-  ],
-  "ignore": [
-    "uploads/**",
-    "build/**",
-    "screenshots/**",
-    ".image-slots.state.json"
   ]
 }
