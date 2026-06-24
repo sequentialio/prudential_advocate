@@ -14,3 +14,4 @@ uploads/
 
 # Claude/dev tooling
 .claude/
+serve.py

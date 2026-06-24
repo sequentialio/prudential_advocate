@@ -255,6 +255,51 @@
     });
   }
 
+  /* ---------- Hero carousel (crossfade, auto-advance, accessible) ---------- */
+  function initHero() {
+    var hero = document.querySelector('[data-hero]');
+    if (!hero) return;
+    var slides = Array.prototype.slice.call(hero.querySelectorAll('.hero__slide'));
+    var dots = Array.prototype.slice.call(hero.querySelectorAll('[data-hero-dot]'));
+    if (slides.length < 2) return;
+
+    var i = 0, timer = null;
+    var INTERVAL = 6000;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function motionOff() {
+      return reduce.matches || document.documentElement.classList.contains('pa-reduce-motion');
+    }
+    function show(n) {
+      n = (n + slides.length) % slides.length;
+      if (n === i) return;
+      slides[i].classList.remove('is-active');
+      if (dots[i]) dots[i].setAttribute('aria-current', 'false');
+      i = n;
+      slides[i].classList.add('is-active');
+      if (dots[i]) dots[i].setAttribute('aria-current', 'true');
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() {
+      stop();
+      if (motionOff()) return;
+      timer = setInterval(function () { show(i + 1); }, INTERVAL);
+    }
+
+    dots.forEach(function (d, n) {
+      d.addEventListener('click', function () { show(n); start(); });
+    });
+    // pause while the user hovers, focuses inside, or the tab is hidden
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+    hero.addEventListener('focusin', stop);
+    hero.addEventListener('focusout', start);
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+    if (reduce.addEventListener) reduce.addEventListener('change', function () { motionOff() ? stop() : start(); });
+
+    start();
+  }
+
   /* ---------- init ---------- */
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
@@ -296,6 +341,7 @@
   ready(function () {
     initDisclosure();
     initMobileNav();
+    initHero();
     initReveal();
     initForm();
     initActiveNav();
