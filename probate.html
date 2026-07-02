@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="stylesheet" href="assets/styles.css?v=2">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('pa_theme')==='dark')document.documentElement.classList.add('pa-dark');}catch(e){}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LegalService","name":"Prudential Advocate, APC","url":"https://prudentialadvocate.com/","description":"California trust and estate litigation firm in Century City and Irvine.","areaServed":["Los Angeles County","Orange County","California"],"knowsAbout":["Trust Litigation","Will Contests","Probate","Trust Administration","Estate Planning","Certificate of Independent Review"],"address":[{"@type":"PostalAddress","streetAddress":"1925 Century Park East, Suite 1700","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90067","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"3333 Michelson Drive, Suite 300","addressLocality":"Irvine","addressRegion":"CA","postalCode":"92612","addressCountry":"US"}],"telephone":["+1-310-955-9907","+1-949-675-3885"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://prudentialadvocate.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://prudentialadvocate.com/services.html"},{"@type":"ListItem","position":3,"name":"Probate","item":"https://prudentialadvocate.com/probate.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Probate","provider":{"@type":"LegalService","name":"Prudential Advocate, APC"},"areaServed":"California"}</script>
@@ -65,6 +65,7 @@
           </div>
         </li>
         <li><a class="nav__link" href="team.html" data-nav="team">Team</a></li>
+        <li><a class="nav__link" href="resources.html" data-nav="resources">Resources</a></li>
         <li><a class="nav__link" href="contact.html" data-nav="contact">Contact</a></li>
       </ul>
 
@@ -107,6 +108,7 @@
       </div>
       <div class="mnav__list">
         <a href="team.html">Team</a>
+        <a href="resources.html">Resources</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
@@ -130,28 +132,21 @@
       </div>
     </header>
 
-    <section class="section--tight" style="padding-bottom:1.5rem">
+    <section class="section--tight">
       <div class="container">
-        <div class="svc-article reveal">
-          <h2 id="svc-body" class="vh">About Probate</h2>
-          <p>At Prudential Advocate, we provide comprehensive guidance through the California probate process, helping clients navigate what can often feel like a complex and time-consuming legal procedure. Probate is the court-supervised process of administering a decedent&rsquo;s estate, which may include validating a will, identifying and valuing assets, paying debts, and distributing property to beneficiaries. Our firm works closely with executors, administrators, and beneficiaries to ensure that each step is handled efficiently and in full compliance with California law.</p>
-          <p>We assist personal representatives with all aspects of probate administration, from filing the initial petition to final distribution and closing the estate. This includes preparing court filings, coordinating appraisals, addressing creditor claims, and ensuring proper notice is given to all interested parties. By managing these details carefully and proactively, Prudential Advocate helps minimize delays and reduce the risk of costly errors or disputes.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-block:0">
-      <div class="container">
-        <figure class="svc-banner reveal"><img src="assets/svc-probate.jpg" alt="" width="1600" height="1066" loading="lazy" decoding="async"></figure>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-top:1.5rem">
-      <div class="container">
-        <div class="svc-article reveal">
-          <p>For beneficiaries and heirs, we provide guidance and advocacy to ensure their rights are protected throughout the probate process. Whether there are questions about the validity of a will, concerns about how the estate is being handled, or disputes among interested parties, our firm offers clear advice and effective representation. We aim to resolve issues efficiently while preserving the integrity of the estate and, where possible, maintaining family relationships.</p>
-          <p>At Prudential Advocate, we understand that probate often follows the loss of a loved one, making it both a legal and personal experience. Our approach combines professionalism with a practical, client-focused perspective, ensuring that clients feel supported and informed at every stage. With our experience and attention to detail, we help clients move through the probate process with confidence and toward a timely, orderly resolution.</p>
-          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Litigation can feel overwhelming &mdash; we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
+        <div class="prose reveal svc-prose">
+          <p>At Prudential Advocate, we provide comprehensive guidance through the California probate process, helping clients navigate what can feel like a complex and time-consuming procedure.</p>
+          <p>Probate is the court-supervised process of administering a decedent’s estate — validating a will, identifying and valuing assets, paying debts, and distributing property to beneficiaries. We work closely with executors, administrators, and beneficiaries to keep each step efficient and fully compliant with California law.</p>
+          <h2>How we help</h2>
+          <p>We assist personal representatives with every aspect of probate administration, from filing the initial petition to final distribution and closing the estate.</p>
+          <p>That includes preparing court filings, coordinating appraisals, addressing creditor claims, and ensuring proper notice to all interested parties. By managing these details carefully and proactively, we help minimize delays and reduce the risk of costly errors or disputes.</p>
+          <h2>Our approach</h2>
+          <p>For beneficiaries and heirs, we provide guidance and advocacy to protect your rights throughout the process.</p>
+          <p>Whether there are questions about a will’s validity, concerns about how the estate is being handled, or disputes among interested parties, we offer clear advice and effective representation — resolving issues efficiently while preserving the integrity of the estate and, where possible, family relationships.</p>
+          <h2>What to expect</h2>
+          <p>We understand that probate often follows the loss of a loved one, making it both a legal and a personal experience.</p>
+          <p>Our approach combines professionalism with a practical, client-focused perspective, so you feel supported and informed at every stage and can move toward a timely, orderly resolution.</p>
+          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>These matters can feel overwhelming — we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
         </div>
       </div>
     </section>
@@ -180,17 +175,17 @@
         <a class="rel-card" href="trust-litigation.html">
           <p class="rc-num">01</p>
           <h3>Trust Litigation</h3>
-          <span class="rc-arrow">Learn about Trust Litigation <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Trust Litigation</span>
         </a>
         <a class="rel-card" href="will-contest.html">
           <p class="rc-num">02</p>
           <h3>Will Contest</h3>
-          <span class="rc-arrow">Learn about Will Contest <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Will Contest</span>
         </a>
         <a class="rel-card" href="certificate-of-independent-review.html">
           <p class="rc-num">03</p>
           <h3>Certificate of Independent Review</h3>
-          <span class="rc-arrow">Learn about Certificate of Independent Review <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Certificate of Independent Review</span>
         </a>
         </div>
       </div>
@@ -251,6 +246,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="about.html">About the Firm</a></li>
           <li><a href="team.html">Meet Our Team</a></li>
+          <li><a href="resources.html">Resources</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>

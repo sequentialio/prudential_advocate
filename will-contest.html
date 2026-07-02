@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="stylesheet" href="assets/styles.css?v=2">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('pa_theme')==='dark')document.documentElement.classList.add('pa-dark');}catch(e){}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LegalService","name":"Prudential Advocate, APC","url":"https://prudentialadvocate.com/","description":"California trust and estate litigation firm in Century City and Irvine.","areaServed":["Los Angeles County","Orange County","California"],"knowsAbout":["Trust Litigation","Will Contests","Probate","Trust Administration","Estate Planning","Certificate of Independent Review"],"address":[{"@type":"PostalAddress","streetAddress":"1925 Century Park East, Suite 1700","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90067","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"3333 Michelson Drive, Suite 300","addressLocality":"Irvine","addressRegion":"CA","postalCode":"92612","addressCountry":"US"}],"telephone":["+1-310-955-9907","+1-949-675-3885"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://prudentialadvocate.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://prudentialadvocate.com/services.html"},{"@type":"ListItem","position":3,"name":"Will Contest","item":"https://prudentialadvocate.com/will-contest.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Will Contest","provider":{"@type":"LegalService","name":"Prudential Advocate, APC"},"areaServed":"California"}</script>
@@ -65,6 +65,7 @@
           </div>
         </li>
         <li><a class="nav__link" href="team.html" data-nav="team">Team</a></li>
+        <li><a class="nav__link" href="resources.html" data-nav="resources">Resources</a></li>
         <li><a class="nav__link" href="contact.html" data-nav="contact">Contact</a></li>
       </ul>
 
@@ -107,6 +108,7 @@
       </div>
       <div class="mnav__list">
         <a href="team.html">Team</a>
+        <a href="resources.html">Resources</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
@@ -130,28 +132,21 @@
       </div>
     </header>
 
-    <section class="section--tight" style="padding-bottom:1.5rem">
+    <section class="section--tight">
       <div class="container">
-        <div class="svc-article reveal">
-          <h2 id="svc-body" class="vh">About Will Contest</h2>
-          <p>At Prudential Advocate, we represent clients in all aspects of will contests throughout California, providing clear guidance and strong advocacy during what is often a difficult and emotional process. Whether you are seeking to challenge the validity of a will or defend it against a dispute, our firm takes the time to understand your situation, explain your options, and develop a strategy tailored to your goals.</p>
-          <p>We handle a wide range of will contest matters, including claims involving lack of testamentary capacity, undue influence, fraud, and improper execution. Our team conducts thorough investigations, gathering medical records, witness testimony, and other critical evidence to build a compelling case. For clients challenging a will, we work to ensure that the decedent&rsquo;s true intentions are honored. For those defending a will, we focus on upholding its validity and protecting the estate plan as intended.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-block:0">
-      <div class="container">
-        <figure class="svc-banner reveal"><img src="assets/svc-will-contest.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-top:1.5rem">
-      <div class="container">
-        <div class="svc-article reveal">
-          <p>Prudential Advocate approaches each case with a balance of assertive representation and practical problem-solving. While we are fully prepared to litigate in probate court, we also explore opportunities for early resolution through negotiation or mediation when appropriate. Our goal is to achieve efficient, cost-effective outcomes while minimizing unnecessary conflict whenever possible.</p>
-          <p>Throughout the process, we prioritize communication, transparency, and responsiveness. Clients are kept informed at every stage and receive straightforward advice about the strengths and risks of their case. Will contests can carry significant financial and personal consequences, but with experienced counsel, clients can navigate the process with confidence and work toward a fair and legally sound resolution.</p>
-          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Litigation can feel overwhelming &mdash; we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
+        <div class="prose reveal svc-prose">
+          <p>At Prudential Advocate, we represent clients in every aspect of will contests throughout California, offering clear guidance and strong advocacy during what is often a difficult, emotional process.</p>
+          <p>Whether you are challenging the validity of a will or defending one against a dispute, we take the time to understand your situation, explain your options, and build a strategy tailored to your goals.</p>
+          <h2>How we help</h2>
+          <p>We handle a wide range of will contest matters, including claims of lack of testamentary capacity, undue influence, fraud, and improper execution.</p>
+          <p>Our team conducts thorough investigations — gathering medical records, witness testimony, and other critical evidence to build a compelling case. For clients challenging a will, we work to ensure the decedent’s true intentions are honored; for those defending one, we focus on upholding its validity and protecting the estate plan as intended.</p>
+          <h2>Our approach</h2>
+          <p>We approach each case with a balance of assertive representation and practical problem-solving.</p>
+          <p>While we are fully prepared to litigate in probate court, we also explore early resolution through negotiation or mediation when appropriate. Our goal is an efficient, cost-effective outcome that minimizes unnecessary conflict wherever possible.</p>
+          <h2>What to expect</h2>
+          <p>Throughout the process, we prioritize communication, transparency, and responsiveness. You are kept informed at every stage and receive straightforward advice about the strengths and risks of your case.</p>
+          <p>Will contests can carry significant financial and personal consequences — but with experienced counsel, you can navigate the process with confidence and work toward a fair, legally sound resolution.</p>
+          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>These matters can feel overwhelming — we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
         </div>
       </div>
     </section>
@@ -180,17 +175,17 @@
         <a class="rel-card" href="trust-litigation.html">
           <p class="rc-num">01</p>
           <h3>Trust Litigation</h3>
-          <span class="rc-arrow">Learn about Trust Litigation <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Trust Litigation</span>
         </a>
         <a class="rel-card" href="certificate-of-independent-review.html">
           <p class="rc-num">03</p>
           <h3>Certificate of Independent Review</h3>
-          <span class="rc-arrow">Learn about Certificate of Independent Review <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Certificate of Independent Review</span>
         </a>
         <a class="rel-card" href="trust-administration.html">
           <p class="rc-num">04</p>
           <h3>Trust Administration</h3>
-          <span class="rc-arrow">Learn about Trust Administration <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Trust Administration</span>
         </a>
         </div>
       </div>
@@ -251,6 +246,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="about.html">About the Firm</a></li>
           <li><a href="team.html">Meet Our Team</a></li>
+          <li><a href="resources.html">Resources</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>

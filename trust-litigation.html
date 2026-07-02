@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="stylesheet" href="assets/styles.css?v=2">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('pa_theme')==='dark')document.documentElement.classList.add('pa-dark');}catch(e){}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LegalService","name":"Prudential Advocate, APC","url":"https://prudentialadvocate.com/","description":"California trust and estate litigation firm in Century City and Irvine.","areaServed":["Los Angeles County","Orange County","California"],"knowsAbout":["Trust Litigation","Will Contests","Probate","Trust Administration","Estate Planning","Certificate of Independent Review"],"address":[{"@type":"PostalAddress","streetAddress":"1925 Century Park East, Suite 1700","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90067","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"3333 Michelson Drive, Suite 300","addressLocality":"Irvine","addressRegion":"CA","postalCode":"92612","addressCountry":"US"}],"telephone":["+1-310-955-9907","+1-949-675-3885"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://prudentialadvocate.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://prudentialadvocate.com/services.html"},{"@type":"ListItem","position":3,"name":"Trust Litigation","item":"https://prudentialadvocate.com/trust-litigation.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Trust Litigation","provider":{"@type":"LegalService","name":"Prudential Advocate, APC"},"areaServed":"California"}</script>
@@ -65,6 +65,7 @@
           </div>
         </li>
         <li><a class="nav__link" href="team.html" data-nav="team">Team</a></li>
+        <li><a class="nav__link" href="resources.html" data-nav="resources">Resources</a></li>
         <li><a class="nav__link" href="contact.html" data-nav="contact">Contact</a></li>
       </ul>
 
@@ -107,6 +108,7 @@
       </div>
       <div class="mnav__list">
         <a href="team.html">Team</a>
+        <a href="resources.html">Resources</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
@@ -130,28 +132,21 @@
       </div>
     </header>
 
-    <section class="section--tight" style="padding-bottom:1.5rem">
+    <section class="section--tight">
       <div class="container">
-        <div class="svc-article reveal">
-          <h2 id="svc-body" class="vh">About Trust Litigation</h2>
-          <p>At Prudential Advocate, we provide strategic, results-driven representation in all aspects of trust litigation. Disputes involving trusts can be complex and deeply personal, often requiring both legal precision and a thoughtful approach. Our firm works closely with clients to understand their goals, evaluate the strengths of their case, and develop a clear plan for protecting their interests — whether they are beneficiaries, trustees, or other interested parties.</p>
-          <p>We assist clients in a wide range of trust-related disputes, including claims involving breach of fiduciary duty, trustee misconduct, contested accountings, and disagreements over trust interpretation. When a trustee fails to act in accordance with their legal obligations, we take decisive action to hold them accountable, including pursuing removal or surcharge where appropriate. At the same time, we also defend trustees who are facing unjust or unfounded claims, ensuring their actions are fairly and accurately presented.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-block:0">
-      <div class="container">
-        <figure class="svc-banner reveal"><img src="assets/svc-trust-litigation.jpg" alt="" width="1600" height="733" loading="lazy" decoding="async"></figure>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-top:1.5rem">
-      <div class="container">
-        <div class="svc-article reveal">
-          <p>Our approach emphasizes both strong advocacy and practical resolution. While we are fully prepared to litigate matters in court, we also recognize that many trust disputes benefit from early negotiation or mediation. Prudential Advocate works to resolve conflicts efficiently whenever possible, helping clients avoid unnecessary expense and prolonged stress. When litigation is necessary, we are committed to presenting a compelling case supported by thorough investigation and careful legal analysis.</p>
-          <p>Clients turn to Prudential Advocate not only for our legal experience, but for our responsiveness and clarity throughout the process. We keep clients informed at every stage, explain complex legal issues in understandable terms, and provide candid advice about risks and potential outcomes. Trust litigation can feel overwhelming, but with the right legal team, clients can move forward with confidence knowing their interests are being protected every step of the way.</p>
-          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Litigation can feel overwhelming &mdash; we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
+        <div class="prose reveal svc-prose">
+          <p>At Prudential Advocate, we provide strategic, results-driven representation in every aspect of trust litigation.</p>
+          <p>Disputes involving trusts can be complex and deeply personal, often calling for both legal precision and a thoughtful approach. We take the time to understand your goals, weigh the strengths of your case, and build a clear plan to protect your interests — whether you are a beneficiary, a trustee, or another interested party.</p>
+          <h2>How we help</h2>
+          <p>We handle a wide range of trust-related disputes, including breach of fiduciary duty, trustee misconduct, contested accountings, and disagreements over how a trust should be interpreted.</p>
+          <p>When a trustee fails to meet their legal obligations, we take decisive action to hold them accountable — including pursuing removal or surcharge where appropriate. We also defend trustees facing unjust or unfounded claims, making sure their actions are presented fairly and accurately.</p>
+          <h2>Our approach</h2>
+          <p>Our approach balances strong advocacy with practical resolution. While we are fully prepared to litigate in court, many trust disputes benefit from early negotiation or mediation, and we pursue those paths whenever they serve your interests.</p>
+          <p>Resolving matters efficiently helps you avoid unnecessary expense and prolonged stress. When litigation is the right course, we present a compelling case built on thorough investigation and careful legal analysis.</p>
+          <h2>What to expect</h2>
+          <p>Clients come to us not only for our experience, but for our responsiveness and clarity. We keep you informed at every stage, explain complex issues in plain terms, and give candid advice about risks and likely outcomes.</p>
+          <p>Trust litigation can feel overwhelming — but with the right team beside you, you can move forward knowing your interests are protected at every step.</p>
+          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>These matters can feel overwhelming — we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
         </div>
       </div>
     </section>
@@ -180,17 +175,17 @@
         <a class="rel-card" href="will-contest.html">
           <p class="rc-num">02</p>
           <h3>Will Contest</h3>
-          <span class="rc-arrow">Learn about Will Contest <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Will Contest</span>
         </a>
         <a class="rel-card" href="certificate-of-independent-review.html">
           <p class="rc-num">03</p>
           <h3>Certificate of Independent Review</h3>
-          <span class="rc-arrow">Learn about Certificate of Independent Review <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Certificate of Independent Review</span>
         </a>
         <a class="rel-card" href="trust-administration.html">
           <p class="rc-num">04</p>
           <h3>Trust Administration</h3>
-          <span class="rc-arrow">Learn about Trust Administration <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Trust Administration</span>
         </a>
         </div>
       </div>
@@ -251,6 +246,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="about.html">About the Firm</a></li>
           <li><a href="team.html">Meet Our Team</a></li>
+          <li><a href="resources.html">Resources</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>

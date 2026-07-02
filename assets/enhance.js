@@ -4,8 +4,7 @@
       reduce motion) — persisted, applied site-wide.
    2) Full English↔Spanish translation engine (text nodes + attributes +
       <title>/meta), persisted, with a MutationObserver for dynamic content.
-   3) Injects the "Demo" nav link, a language switch, and a floating
-      accessibility button + panel on every page.
+   3) Injects a floating accessibility button + panel on every page.
    Loaded by site.js so it applies to all pages with no per-page edits.
    ========================================================================= */
 (function () {
@@ -192,9 +191,16 @@
 
   /* ---------------- control wiring / sync ---------------- */
   function syncControls() {
-    // language buttons
+    // language buttons (a11y panel pill group, if present)
     Array.prototype.forEach.call(doc.querySelectorAll(".pa-lang button[data-lang]"), function (b) {
       b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
+    });
+    // nav language dropdown: current label + selected option
+    Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-label]"), function (l) {
+      l.textContent = (lang === "es") ? "Español" : "English";
+    });
+    Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-menu] [data-lang], .mnav__langrow [data-lang]"), function (b) {
+      b.setAttribute("aria-current", String(b.getAttribute("data-lang") === lang));
     });
     // mode switches
     Array.prototype.forEach.call(doc.querySelectorAll("[data-pa-mode]"), function (input) {
@@ -216,27 +222,104 @@
     return w;
   }
 
+  /* ---------------- dark mode ---------------- */
+  var SUN = '<svg class="ic sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.6v2.3M12 19.1v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.6 12h2.3M19.1 12h2.3M4.4 19.6l1.6-1.6M18 6l1.6-1.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+  var MOON = '<svg class="ic moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.4A8 8 0 0 1 9.6 4 7 7 0 1 0 20 14.4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
+
+  function isDark() { return root.classList.contains("pa-dark"); }
+  function setTheme(dark) {
+    root.classList.toggle("pa-dark", !!dark);
+    try { localStorage.setItem("pa_theme", dark ? "dark" : "light"); } catch (e) {}
+    syncTheme();
+  }
+  function syncTheme() {
+    var lbl = isDark() ? "Light mode" : "Dark mode";
+    Array.prototype.forEach.call(doc.querySelectorAll("[data-theme-toggle]"), function (b) {
+      b.setAttribute("aria-pressed", String(isDark()));
+      var t = b.querySelector("[data-theme-label]"); if (t) t.textContent = lbl;
+    });
+  }
+  function injectTheme() {
+    var util = doc.querySelector(".nav__utility");
+    if (util && !util.querySelector(".nav__theme")) {
+      var b = doc.createElement("button");
+      b.className = "nav__theme"; b.type = "button";
+      b.setAttribute("data-theme-toggle", ""); b.setAttribute("data-no-i18n", "");
+      b.setAttribute("aria-label", "Toggle dark mode"); b.setAttribute("aria-pressed", String(isDark()));
+      b.innerHTML = MOON + SUN;
+      var lang = util.querySelector(".nav__lang"), call = util.querySelector(".callbtn");
+      util.insertBefore(b, lang || call || util.firstChild);
+    }
+    var panel = doc.querySelector(".mnav__panel");
+    if (panel && !panel.querySelector(".mnav__theme")) {
+      var w = doc.createElement("div");
+      w.className = "mnav__toggles"; w.setAttribute("data-no-i18n", "");
+      w.innerHTML = '<button type="button" class="mnav__theme" data-theme-toggle aria-pressed="' + isDark() + '">' +
+        MOON + SUN + '<span data-theme-label>Dark mode</span></button>';
+      var mlang = panel.querySelector(".mnav__lang");
+      if (mlang) mlang.parentNode.insertBefore(w, mlang.nextSibling);
+      else { var cta = panel.querySelector(".mnav__cta"); if (cta) panel.insertBefore(w, cta); else panel.appendChild(w); }
+    }
+    doc.addEventListener("click", function (e) {
+      if (e.target.closest("[data-theme-toggle]")) setTheme(!isDark());
+    });
+    syncTheme();
+  }
+
   /* ---------------- DOM injection ---------------- */
-  function injectNav() {
-    // Desktop "Demo" link (before Contact)
-    var primary = doc.querySelector(".nav__primary");
-    if (primary && !primary.querySelector('[data-nav="demo"]')) {
-      var li = doc.createElement("li");
-      li.innerHTML = '<a class="nav__link" href="demo.html" data-nav="demo">Demo</a>';
-      var contact = primary.querySelector('a[data-nav="contact"]');
-      if (contact) primary.insertBefore(li, contact.parentNode); else primary.appendChild(li);
+  var GLOBE ='<svg class="globe" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.6"/><path d="M12 3c2.4 2.5 2.4 15.5 0 18M12 3c-2.4 2.5-2.4 15.5 0 18" stroke="currentColor" stroke-width="1.5"/></svg>';
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function closeLangMenus() {
+    Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-menu]"), function (m) { m.removeAttribute("data-open"); });
+    Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-btn]"), function (b) { b.setAttribute("aria-expanded", "false"); });
+  }
+
+  function injectLangNav() {
+    // Desktop: dropdown in the nav utility strip, before the call button
+    var util = doc.querySelector(".nav__utility");
+    if (util && !util.querySelector(".nav__lang")) {
+      var dd = doc.createElement("div");
+      dd.className = "nav__lang"; dd.setAttribute("data-no-i18n", "");
+      dd.innerHTML =
+        '<button class="nav__langbtn" type="button" data-lang-btn aria-haspopup="true" aria-expanded="false" aria-label="Select language">' +
+          GLOBE + '<span data-lang-label>English</span>' + CHEV + '</button>' +
+        '<div class="nav__langmenu" data-lang-menu role="menu">' +
+          '<button type="button" role="menuitem" data-lang="en">English</button>' +
+          '<button type="button" role="menuitem" data-lang="es" lang="es">Español</button>' +
+        '</div>';
+      var call = util.querySelector(".callbtn");
+      if (call) util.insertBefore(dd, call); else util.insertBefore(dd, util.firstChild);
     }
-    // current-page marker for Demo
-    if (doc.body.getAttribute("data-page") === "demo") {
-      var d = doc.querySelector('[data-nav="demo"]'); if (d) d.setAttribute("aria-current", "page");
+    // Mobile: simple two-button row inside the slide-out panel
+    var panel = doc.querySelector(".mnav__panel");
+    if (panel && !panel.querySelector(".mnav__lang")) {
+      var m = doc.createElement("div");
+      m.className = "mnav__lang"; m.setAttribute("data-no-i18n", "");
+      m.innerHTML =
+        '<p class="mnav__group-label">Language / Idioma</p>' +
+        '<div class="mnav__langrow">' +
+          '<button type="button" data-lang="en">English</button>' +
+          '<button type="button" data-lang="es" lang="es">Español</button>' +
+        '</div>';
+      var cta = panel.querySelector(".mnav__cta");
+      if (cta) panel.insertBefore(m, cta); else panel.appendChild(m);
     }
-    // Mobile nav: Demo link (language switch intentionally NOT in nav —
-    // language is geo-detected automatically; the demo page exposes a manual toggle)
-    var mContact = doc.querySelector('.mnav .mnav__list a[href="contact.html"]');
-    if (mContact && !doc.querySelector('.mnav .mnav__list a[href="demo.html"]')) {
-      var ma = doc.createElement("a"); ma.href = "demo.html"; ma.textContent = "Demo";
-      mContact.parentNode.insertBefore(ma, mContact.nextSibling);
-    }
+    // Delegated interaction (bound once)
+    doc.addEventListener("click", function (e) {
+      var opt = e.target.closest("[data-lang]");
+      if (opt) { setLang(opt.getAttribute("data-lang")); closeLangMenus(); return; }
+      var btn = e.target.closest("[data-lang-btn]");
+      if (btn) {
+        var menu = btn.parentNode.querySelector("[data-lang-menu]");
+        var isOpen = menu && menu.getAttribute("data-open") === "true";
+        closeLangMenus();
+        if (menu && !isOpen) { menu.setAttribute("data-open", "true"); btn.setAttribute("aria-expanded", "true"); }
+        return;
+      }
+      closeLangMenus();
+    });
+    doc.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLangMenus(); });
   }
 
   function injectA11y() {
@@ -287,16 +370,10 @@
     });
   }
 
-  /* expose a tiny API for the demo page's inline controls */
-  window.PA = {
-    setLang: setLang, getLang: function () { return lang; },
-    setMode: setMode, getMode: function (k) { return !!prefs[k]; },
-    resetAll: resetAll, MODES: MODES
-  };
-
   /* ---------------- init ---------------- */
   function init() {
-    injectNav();
+    injectTheme();
+    injectLangNav();
     injectA11y();
     syncControls();
     if (lang === "es") { loadDict(function () { toES(); startObserver(); syncControls(); }); }

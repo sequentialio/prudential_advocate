@@ -264,7 +264,7 @@
     if (slides.length < 2) return;
 
     var i = 0, timer = null;
-    var INTERVAL = 6000;
+    var INTERVAL = 7000;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     function motionOff() {

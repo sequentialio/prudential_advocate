@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="stylesheet" href="assets/styles.css?v=2">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('pa_theme')==='dark')document.documentElement.classList.add('pa-dark');}catch(e){}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LegalService","name":"Prudential Advocate, APC","url":"https://prudentialadvocate.com/","description":"California trust and estate litigation firm in Century City and Irvine.","areaServed":["Los Angeles County","Orange County","California"],"knowsAbout":["Trust Litigation","Will Contests","Probate","Trust Administration","Estate Planning","Certificate of Independent Review"],"address":[{"@type":"PostalAddress","streetAddress":"1925 Century Park East, Suite 1700","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90067","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"3333 Michelson Drive, Suite 300","addressLocality":"Irvine","addressRegion":"CA","postalCode":"92612","addressCountry":"US"}],"telephone":["+1-310-955-9907","+1-949-675-3885"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://prudentialadvocate.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://prudentialadvocate.com/services.html"},{"@type":"ListItem","position":3,"name":"Trust Administration","item":"https://prudentialadvocate.com/trust-administration.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Trust Administration","provider":{"@type":"LegalService","name":"Prudential Advocate, APC"},"areaServed":"California"}</script>
@@ -65,6 +65,7 @@
           </div>
         </li>
         <li><a class="nav__link" href="team.html" data-nav="team">Team</a></li>
+        <li><a class="nav__link" href="resources.html" data-nav="resources">Resources</a></li>
         <li><a class="nav__link" href="contact.html" data-nav="contact">Contact</a></li>
       </ul>
 
@@ -107,6 +108,7 @@
       </div>
       <div class="mnav__list">
         <a href="team.html">Team</a>
+        <a href="resources.html">Resources</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
@@ -130,28 +132,21 @@
       </div>
     </header>
 
-    <section class="section--tight" style="padding-bottom:1.5rem">
+    <section class="section--tight">
       <div class="container">
-        <div class="svc-article reveal">
-          <h2 id="svc-body" class="vh">About Trust Administration</h2>
-          <p>At Prudential Advocate, we guide trustees and beneficiaries through every stage of trust administration with clarity, efficiency, and careful attention to detail. Administering a trust in California involves a range of legal and financial responsibilities, from identifying and managing assets to communicating with beneficiaries and ensuring compliance with applicable laws. Our firm provides practical, hands-on support to help clients fulfill these obligations while minimizing risk and avoiding unnecessary complications.</p>
-          <p>We assist trustees with all aspects of the administration process, including interpreting trust terms, preparing required notices, handling asset transfers, and coordinating distributions. Our goal is to ensure that the trust is administered properly and in accordance with the settlor&rsquo;s intent. By providing proactive guidance, we help trustees avoid common pitfalls that can lead to disputes, delays, or potential liability.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-block:0">
-      <div class="container">
-        <figure class="svc-banner reveal"><img src="assets/svc-trust-administration.jpg" alt="" width="1600" height="1066" loading="lazy" decoding="async"></figure>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-top:1.5rem">
-      <div class="container">
-        <div class="svc-article reveal">
-          <p>Prudential Advocate also advises beneficiaries who have questions or concerns about how a trust is being managed. We help clients understand their rights, review accountings, and, when necessary, take action to ensure transparency and compliance. Whether the matter involves routine administration or more complex issues, we provide clear, straightforward advice so clients can make informed decisions.</p>
-          <p>Throughout the process, we emphasize communication, organization, and efficiency. Trust administration can feel overwhelming, particularly during times of loss or transition, but our firm works to streamline each step and provide steady guidance from start to finish. With Prudential Advocate, clients can move forward with confidence knowing that their responsibilities are being handled correctly and their interests are well protected.</p>
-          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Litigation can feel overwhelming &mdash; we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
+        <div class="prose reveal svc-prose">
+          <p>At Prudential Advocate, we guide trustees and beneficiaries through every stage of trust administration with clarity, efficiency, and careful attention to detail.</p>
+          <p>Administering a trust in California involves a range of legal and financial responsibilities — from identifying and managing assets to communicating with beneficiaries and ensuring compliance with the law. We provide practical, hands-on support to help you meet those obligations while minimizing risk and avoiding unnecessary complications.</p>
+          <h2>How we help</h2>
+          <p>We assist trustees with every part of the administration process, including interpreting trust terms, preparing required notices, handling asset transfers, and coordinating distributions.</p>
+          <p>Our goal is to see the trust administered properly and in keeping with the settlor’s intent. With proactive guidance, we help trustees avoid common pitfalls that can lead to disputes, delays, or personal liability.</p>
+          <h2>Our approach</h2>
+          <p>We also advise beneficiaries who have questions or concerns about how a trust is being managed.</p>
+          <p>We help you understand your rights, review accountings, and — when necessary — take action to ensure transparency and compliance. Whether the matter is routine or more complex, we offer clear, straightforward advice so you can make informed decisions.</p>
+          <h2>What to expect</h2>
+          <p>Throughout, we emphasize communication, organization, and efficiency.</p>
+          <p>Trust administration can feel overwhelming, particularly during a time of loss or transition. We work to streamline each step and provide steady guidance from start to finish, so you can move forward knowing your responsibilities are handled correctly and your interests are well protected.</p>
+          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>These matters can feel overwhelming — we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
         </div>
       </div>
     </section>
@@ -180,17 +175,17 @@
         <a class="rel-card" href="trust-litigation.html">
           <p class="rc-num">01</p>
           <h3>Trust Litigation</h3>
-          <span class="rc-arrow">Learn about Trust Litigation <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Trust Litigation</span>
         </a>
         <a class="rel-card" href="will-contest.html">
           <p class="rc-num">02</p>
           <h3>Will Contest</h3>
-          <span class="rc-arrow">Learn about Will Contest <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Will Contest</span>
         </a>
         <a class="rel-card" href="certificate-of-independent-review.html">
           <p class="rc-num">03</p>
           <h3>Certificate of Independent Review</h3>
-          <span class="rc-arrow">Learn about Certificate of Independent Review <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Certificate of Independent Review</span>
         </a>
         </div>
       </div>
@@ -251,6 +246,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="about.html">About the Firm</a></li>
           <li><a href="team.html">Meet Our Team</a></li>
+          <li><a href="resources.html">Resources</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>

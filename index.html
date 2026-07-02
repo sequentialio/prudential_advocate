@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="stylesheet" href="assets/styles.css?v=2">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('pa_theme')==='dark')document.documentElement.classList.add('pa-dark');}catch(e){}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LegalService","name":"Prudential Advocate, APC","url":"https://prudentialadvocate.com/","description":"California trust and estate litigation firm in Century City and Irvine.","areaServed":["Los Angeles County","Orange County","California"],"knowsAbout":["Trust Litigation","Will Contests","Probate","Trust Administration","Estate Planning","Certificate of Independent Review"],"address":[{"@type":"PostalAddress","streetAddress":"1925 Century Park East, Suite 1700","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90067","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"3333 Michelson Drive, Suite 300","addressLocality":"Irvine","addressRegion":"CA","postalCode":"92612","addressCountry":"US"}],"telephone":["+1-310-955-9907","+1-949-675-3885"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://prudentialadvocate.com/"}]}</script>
 </head>
@@ -64,6 +64,7 @@
           </div>
         </li>
         <li><a class="nav__link" href="team.html" data-nav="team">Team</a></li>
+        <li><a class="nav__link" href="resources.html" data-nav="resources">Resources</a></li>
         <li><a class="nav__link" href="contact.html" data-nav="contact">Contact</a></li>
       </ul>
 
@@ -106,6 +107,7 @@
       </div>
       <div class="mnav__list">
         <a href="team.html">Team</a>
+        <a href="resources.html">Resources</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
@@ -122,9 +124,9 @@
   <main id="main">
     <section class="hero on-dark" data-hero aria-label="Prudential Advocate — trust &amp; estate litigation in Century City and Irvine">
       <div class="hero__slides" aria-hidden="true">
-        <div class="hero__slide is-active"><img src="assets/century-city.jpg" alt="" width="1600" height="900" fetchpriority="high" decoding="async"></div>
-        <div class="hero__slide"><img src="assets/irvine.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></div>
-        <div class="hero__slide"><img src="assets/hero-consult.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></div>
+        <div class="hero__slide is-active"><img src="assets/hero-1.jpg" alt="" width="1920" height="1076" fetchpriority="high" decoding="async"></div>
+        <div class="hero__slide"><img src="assets/hero-2.jpg" alt="" width="1920" height="853" loading="lazy" decoding="async"></div>
+        <div class="hero__slide"><img src="assets/hero-3.jpg" alt="" width="1920" height="1440" loading="lazy" decoding="async"></div>
       </div>
       <div class="hero__scrim" aria-hidden="true"></div>
       <div class="container">
@@ -137,15 +139,15 @@
             <a class="btn btn--outline btn--lg" href="tel:+13109559907"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3h3l1.5 5-2 1.5a12 12 0 0 0 5 5l1.5-2 5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Call 310.955.9907</a>
           </div>
           <div class="hero__dots" role="group" aria-label="Choose background image">
-            <button class="hero__dot" type="button" data-hero-dot aria-current="true" aria-label="Century City skyline"></button>
-            <button class="hero__dot" type="button" data-hero-dot aria-current="false" aria-label="Irvine skyline"></button>
-            <button class="hero__dot" type="button" data-hero-dot aria-current="false" aria-label="Client consultation"></button>
+            <button class="hero__dot" type="button" data-hero-dot aria-current="true" aria-label="Hillside estate overlooking the Los Angeles skyline at sunset"></button>
+            <button class="hero__dot" type="button" data-hero-dot aria-current="false" aria-label="Modern law office interior"></button>
+            <button class="hero__dot" type="button" data-hero-dot aria-current="false" aria-label="Palm trees along the Southern California coast at sunset"></button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section band-ivory2" aria-labelledby="svc-h">
+    <section class="section band-ivory2 svc-bg" aria-labelledby="svc-h">
       <div class="container">
         <div class="shead__row reveal">
           <div class="shead">
@@ -155,7 +157,7 @@
           </div>
           <a class="tlink" href="services.html" style="margin-bottom:.4rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>See all services</span></a>
         </div>
-        <div class="cards cards--alt" style="margin-top:2.5rem">
+        <div class="cards" style="margin-top:2.5rem">
         <article class="scard reveal" data-d="1">
           <p class="scard__num">01</p>
           <h3>Trust Litigation</h3>
@@ -323,6 +325,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="about.html">About the Firm</a></li>
           <li><a href="team.html">Meet Our Team</a></li>
+          <li><a href="resources.html">Resources</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>

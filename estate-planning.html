@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="stylesheet" href="assets/styles.css?v=2">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('pa_theme')==='dark')document.documentElement.classList.add('pa-dark');}catch(e){}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LegalService","name":"Prudential Advocate, APC","url":"https://prudentialadvocate.com/","description":"California trust and estate litigation firm in Century City and Irvine.","areaServed":["Los Angeles County","Orange County","California"],"knowsAbout":["Trust Litigation","Will Contests","Probate","Trust Administration","Estate Planning","Certificate of Independent Review"],"address":[{"@type":"PostalAddress","streetAddress":"1925 Century Park East, Suite 1700","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90067","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"3333 Michelson Drive, Suite 300","addressLocality":"Irvine","addressRegion":"CA","postalCode":"92612","addressCountry":"US"}],"telephone":["+1-310-955-9907","+1-949-675-3885"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://prudentialadvocate.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://prudentialadvocate.com/services.html"},{"@type":"ListItem","position":3,"name":"Estate Planning","item":"https://prudentialadvocate.com/estate-planning.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Estate Planning","provider":{"@type":"LegalService","name":"Prudential Advocate, APC"},"areaServed":"California"}</script>
@@ -65,6 +65,7 @@
           </div>
         </li>
         <li><a class="nav__link" href="team.html" data-nav="team">Team</a></li>
+        <li><a class="nav__link" href="resources.html" data-nav="resources">Resources</a></li>
         <li><a class="nav__link" href="contact.html" data-nav="contact">Contact</a></li>
       </ul>
 
@@ -107,6 +108,7 @@
       </div>
       <div class="mnav__list">
         <a href="team.html">Team</a>
+        <a href="resources.html">Resources</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
@@ -130,28 +132,21 @@
       </div>
     </header>
 
-    <section class="section--tight" style="padding-bottom:1.5rem">
+    <section class="section--tight">
       <div class="container">
-        <div class="svc-article reveal">
-          <h2 id="svc-body" class="vh">About Estate Planning</h2>
-          <p>At Prudential Advocate, we help individuals and families create thoughtful, effective estate plans designed to protect their assets and provide peace of mind for the future. Estate planning is more than just drafting documents — it is about making informed decisions that reflect your values, your priorities, and the legacy you want to leave behind. Our firm takes a personalized approach, working closely with clients to understand their unique circumstances and craft plans that are both comprehensive and practical.</p>
-          <p>We assist with the preparation of a full range of estate-planning documents, including wills, revocable living trusts, powers of attorney, and advance health care directives. Each plan is carefully tailored to ensure that assets are distributed according to your wishes, trusted individuals are appointed to make decisions when needed, and potential complications are minimized. By addressing these issues proactively, we help clients avoid unnecessary court involvement and reduce the likelihood of future disputes.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-block:0">
-      <div class="container">
-        <figure class="svc-banner reveal"><img src="assets/svc-estate-planning.jpg" alt="" width="1600" height="524" loading="lazy" decoding="async"></figure>
-      </div>
-    </section>
-
-    <section class="section--tight" style="padding-top:1.5rem">
-      <div class="container">
-        <div class="svc-article reveal">
-          <p>Prudential Advocate also provides guidance on more advanced planning strategies, including asset protection, tax considerations, and planning for minor children or beneficiaries with special needs. We take the time to explain each option in clear, understandable terms so clients can make confident decisions about their future. As laws and personal circumstances evolve, we are available to review and update estate plans to ensure they remain effective over time.</p>
-          <p>Our goal is to make the estate-planning process straightforward and accessible while delivering lasting value. Clients rely on Prudential Advocate for clear communication, attention to detail, and a commitment to getting it right. With a well-structured estate plan in place, you can move forward with confidence knowing your loved ones are protected and your wishes will be honored.</p>
-          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Litigation can feel overwhelming &mdash; we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
+        <div class="prose reveal svc-prose">
+          <p>At Prudential Advocate, we help individuals and families create thoughtful, effective estate plans that protect their assets and provide peace of mind for the future.</p>
+          <p>Estate planning is more than drafting documents — it is about making informed decisions that reflect your values, your priorities, and the legacy you want to leave. We take a personalized approach, working closely with you to understand your circumstances and craft a plan that is both comprehensive and practical.</p>
+          <h2>How we help</h2>
+          <p>We prepare a full range of estate-planning documents, including wills, revocable living trusts, powers of attorney, and advance health care directives.</p>
+          <p>Each plan is carefully tailored so your assets are distributed according to your wishes, trusted people are in place to make decisions when needed, and potential complications are minimized. Addressing these issues proactively helps you avoid unnecessary court involvement and reduces the likelihood of future disputes.</p>
+          <h2>Our approach</h2>
+          <p>We also advise on more advanced strategies, including asset protection, tax considerations, and planning for minor children or beneficiaries with special needs.</p>
+          <p>We take the time to explain each option in clear, understandable terms so you can make confident decisions. As laws and personal circumstances change, we are available to review and update your plan so it stays effective over time.</p>
+          <h2>What to expect</h2>
+          <p>Our goal is to make estate planning straightforward and accessible while delivering lasting value.</p>
+          <p>Clients rely on us for clear communication, attention to detail, and a commitment to getting it right. With a well-structured plan in place, you can move forward knowing your loved ones are protected and your wishes will be honored.</p>
+          <p class="notice reveal" style="margin-top:2rem"><svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>These matters can feel overwhelming — we explain your options in plain terms and provide candid advice about risks and likely outcomes. Past results do not guarantee future outcomes.</span></p>
         </div>
       </div>
     </section>
@@ -180,17 +175,17 @@
         <a class="rel-card" href="trust-litigation.html">
           <p class="rc-num">01</p>
           <h3>Trust Litigation</h3>
-          <span class="rc-arrow">Learn about Trust Litigation <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Trust Litigation</span>
         </a>
         <a class="rel-card" href="will-contest.html">
           <p class="rc-num">02</p>
           <h3>Will Contest</h3>
-          <span class="rc-arrow">Learn about Will Contest <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Will Contest</span>
         </a>
         <a class="rel-card" href="certificate-of-independent-review.html">
           <p class="rc-num">03</p>
           <h3>Certificate of Independent Review</h3>
-          <span class="rc-arrow">Learn about Certificate of Independent Review <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rc-arrow">Learn about Certificate of Independent Review</span>
         </a>
         </div>
       </div>
@@ -251,6 +246,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="about.html">About the Firm</a></li>
           <li><a href="team.html">Meet Our Team</a></li>
+          <li><a href="resources.html">Resources</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
