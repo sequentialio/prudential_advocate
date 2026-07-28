@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Article Portal | Prudential Advocate</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="assets/styles.css?v=2">
+  <style>
+    [hidden] { display: none !important; }
+    .portal-wrap { max-width: 960px; margin: 0 auto; padding: 2.5rem clamp(1.1rem,4vw,2.5rem) 4rem; }
+    .portal-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.6rem; margin-top: 1.4rem; }
+    .portal-field { display: block; margin-top: 1rem; }
+    .portal-field span { display: block; font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: .35rem; }
+    .portal-field input, .portal-field select, .portal-field textarea {
+      width: 100%; padding: .65rem .75rem; border: 1px solid var(--line-2); border-radius: var(--radius);
+      font: inherit; color: var(--ink); background: var(--surface); box-sizing: border-box;
+    }
+    .portal-field textarea { min-height: 320px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92rem; line-height: 1.55; }
+    .portal-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem; align-items: center; }
+    .portal-list { display: grid; gap: .7rem; margin-top: 1.2rem; }
+    .portal-row { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: .9rem 1.1rem; background: var(--surface); }
+    .portal-row strong { font-family: var(--serif); font-size: 1.05rem; }
+    .portal-row .grow { flex: 1; min-width: 200px; }
+    .badge { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .55rem; border-radius: 999px; }
+    .badge--live { background: #E7F2E7; color: #216321; }
+    .badge--draft { background: var(--ivory-2); color: var(--ink-soft); }
+    .portal-msg { margin-top: 1rem; padding: .8rem 1rem; border-radius: var(--radius); font-weight: 600; display: none; }
+    .portal-msg[data-kind="ok"] { display: block; background: #E7F2E7; color: #216321; }
+    .portal-msg[data-kind="err"] { display: block; background: #FBEAEA; color: #A31212; }
+    .preview-pane { border: 1px dashed var(--line-2); border-radius: var(--radius-lg); padding: 1.4rem; margin-top: 1rem; }
+    .btn--sm { padding: .45rem .9rem; font-size: .9rem; min-height: 0; }
+    .hint-sm { font-size: .85rem; color: var(--ink-soft); margin-top: .35rem; }
+  </style>
+</head>
+<body data-page="portal">
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true"><svg viewBox="116 44 974 1226" fill="currentColor" aria-hidden="true" focusable="false"><path d="M 1074,450 L 971,504 L 901,1064 L 1044,1003 L 1082,951 Z"/><path d="M 646,105 L 516,181 L 433,702 L 447,723 L 602,657 L 636,605 Z"/><path d="M 1010,59 L 781,198 L 628,1263 L 862,1152 Z"/><path d="M 507,50 L 275,180 L 123,1263 L 357,1139 Z"/></svg></span>
+        <span class="brand__txt">
+          <span class="brand__name">Prudential Advocate</span>
+          <span class="brand__sub">Article Portal</span>
+        </span>
+      </a>
+      <div class="nav__utility" style="margin-left:auto">
+        <button class="btn btn--outline btn--sm" type="button" data-signout hidden>Sign out</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="portal-wrap">
+
+  <!-- ============ LOGIN ============ -->
+  <section data-view="login" hidden>
+    <h1 style="font-size:1.6rem">Sign in</h1>
+    <p class="muted" style="margin-top:.5rem">Manage the articles shown on the Resources page. For firm staff only.</p>
+    <div class="portal-card" style="max-width:420px">
+      <form data-login-form>
+        <label class="portal-field"><span>Email</span><input type="email" name="email" autocomplete="username" required></label>
+        <label class="portal-field"><span>Password</span><input type="password" name="password" autocomplete="current-password" required></label>
+        <div class="portal-actions"><button class="btn btn--primary" type="submit">Sign in</button></div>
+      </form>
+      <p class="portal-msg" data-login-msg></p>
+    </div>
+  </section>
+
+  <!-- ============ ARTICLE LIST ============ -->
+  <section data-view="list" hidden>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1rem;justify-content:space-between">
+      <h1 style="font-size:1.6rem">Your articles</h1>
+      <button class="btn btn--primary" type="button" data-new-article>New article</button>
+    </div>
+    <p class="muted" style="margin-top:.5rem">Published articles appear on the <a href="/resources" target="_blank" rel="noopener">Resources page</a> within a few minutes. Unpublished drafts are only visible here.</p>
+    <div class="portal-list" data-article-list></div>
+    <p class="portal-msg" data-list-msg></p>
+  </section>
+
+  <!-- ============ EDITOR ============ -->
+  <section data-view="editor" hidden>
+    <p><button class="tlink" type="button" data-back style="background:none;border:0;cursor:pointer;font:inherit;color:var(--gold-ink);font-weight:600">&larr; Back to all articles</button></p>
+    <h1 style="font-size:1.6rem;margin-top:.6rem" data-editor-title>New article</h1>
+    <div class="portal-card">
+      <form data-editor-form>
+        <label class="portal-field"><span>Title</span><input name="title" required maxlength="140"></label>
+        <label class="portal-field"><span>Web address (slug)</span><input name="slug" required pattern="[a-z0-9][a-z0-9-]*" maxlength="80">
+          <span class="hint-sm">Lowercase letters, numbers and dashes. The article will live at <code>prudentialadvocate.com/articles/&lt;slug&gt;</code>. Changing this after publishing changes the address.</span></label>
+        <label class="portal-field"><span>Category</span>
+          <select name="category">
+            <option>Trust Litigation</option>
+            <option>Will Contest</option>
+            <option>Certificate of Independent Review</option>
+            <option>Trust Administration</option>
+            <option>Probate</option>
+            <option>Estate Planning</option>
+            <option>Firm News</option>
+          </select></label>
+        <label class="portal-field"><span>Short summary (shown on the Resources page &amp; search engines)</span>
+          <input name="meta_description" required maxlength="300"></label>
+        <label class="portal-field"><span>Estimated read time (minutes)</span><input name="read_minutes" type="number" min="1" max="60" value="4"></label>
+        <label class="portal-field"><span>Article text</span>
+          <textarea name="body_md" required placeholder="Write the article here.&#10;&#10;## Headings start with ##&#10;&#10;Blank lines separate paragraphs. **Bold** and *italic* work too.&#10;&#10;- Bullet lists start with a dash"></textarea>
+          <span class="hint-sm">Formatting: <code>## Heading</code> &middot; <code>**bold**</code> &middot; <code>*italic*</code> &middot; <code>- bullet</code>. Use the preview to check.</span></label>
+        <div class="portal-actions">
+          <button class="btn btn--outline" type="button" data-preview-toggle>Preview</button>
+          <button class="btn btn--primary" type="submit" data-save>Save draft</button>
+          <button class="btn btn--ink" type="button" data-publish hidden>Publish</button>
+          <button class="btn btn--outline" type="button" data-unpublish hidden>Unpublish</button>
+          <button class="btn btn--outline" type="button" data-delete hidden style="margin-left:auto;color:#A31212;border-color:#A31212">Delete</button>
+        </div>
+      </form>
+      <p class="portal-msg" data-editor-msg></p>
+      <div class="preview-pane" data-preview hidden>
+        <p class="eyebrow">Preview</p>
+        <div class="prose" data-preview-body style="max-width:none;margin-top:1rem"></div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:1rem;font-size:.9rem">Reminder: articles are attorney advertising. No guarantees, superiority claims, or &ldquo;specialist/expert&rdquo; language unless State-Bar-certified. Content should be reviewed by the responsible attorney before publishing.</p>
+  </section>
+
+</main>
+
+<script src="assets/vendor/supabase.min.js"></script>
+<script src="assets/vendor/marked.min.js"></script>
+<script src="assets/vendor/purify.min.js"></script>
+<script src="assets/portal.js"></script>
+</body>
+</html>

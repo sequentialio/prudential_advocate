@@ -195,11 +195,15 @@
     Array.prototype.forEach.call(doc.querySelectorAll(".pa-lang button[data-lang]"), function (b) {
       b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
     });
-    // nav language dropdown: current label + selected option
+    // nav language toggle: label names the language you'd switch TO
     Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-label]"), function (l) {
-      l.textContent = (lang === "es") ? "Español" : "English";
+      l.textContent = (lang === "es") ? "English" : "Español";
     });
-    Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-menu] [data-lang], .mnav__langrow [data-lang]"), function (b) {
+    Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-toggle]"), function (b) {
+      b.setAttribute("lang", lang === "es" ? "en" : "es");
+      b.setAttribute("aria-label", lang === "es" ? "View this site in English" : "Ver este sitio en español");
+    });
+    Array.prototype.forEach.call(doc.querySelectorAll(".mnav__langrow [data-lang]"), function (b) {
       b.setAttribute("aria-current", String(b.getAttribute("data-lang") === lang));
     });
     // mode switches
@@ -268,30 +272,21 @@
 
   /* ---------------- DOM injection ---------------- */
   var GLOBE ='<svg class="globe" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.6"/><path d="M12 3c2.4 2.5 2.4 15.5 0 18M12 3c-2.4 2.5-2.4 15.5 0 18" stroke="currentColor" stroke-width="1.5"/></svg>';
-  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-  function closeLangMenus() {
-    Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-menu]"), function (m) { m.removeAttribute("data-open"); });
-    Array.prototype.forEach.call(doc.querySelectorAll("[data-lang-btn]"), function (b) { b.setAttribute("aria-expanded", "false"); });
-  }
 
   function injectLangNav() {
-    // Desktop: dropdown in the nav utility strip, before the call button
+    // Desktop + mobile bar: a single always-visible toggle button that names
+    // the language you'll switch TO (target language, not the current one).
     var util = doc.querySelector(".nav__utility");
     if (util && !util.querySelector(".nav__lang")) {
       var dd = doc.createElement("div");
       dd.className = "nav__lang"; dd.setAttribute("data-no-i18n", "");
       dd.innerHTML =
-        '<button class="nav__langbtn" type="button" data-lang-btn aria-haspopup="true" aria-expanded="false" aria-label="Select language">' +
-          GLOBE + '<span data-lang-label>English</span>' + CHEV + '</button>' +
-        '<div class="nav__langmenu" data-lang-menu role="menu">' +
-          '<button type="button" role="menuitem" data-lang="en">English</button>' +
-          '<button type="button" role="menuitem" data-lang="es" lang="es">Español</button>' +
-        '</div>';
+        '<button class="nav__langbtn" type="button" data-lang-toggle aria-label="Switch language">' +
+          GLOBE + '<span data-lang-label>Español</span></button>';
       var call = util.querySelector(".callbtn");
       if (call) util.insertBefore(dd, call); else util.insertBefore(dd, util.firstChild);
     }
-    // Mobile: simple two-button row inside the slide-out panel
+    // Mobile slide-out panel: simple two-button row (kept alongside the bar toggle)
     var panel = doc.querySelector(".mnav__panel");
     if (panel && !panel.querySelector(".mnav__lang")) {
       var m = doc.createElement("div");
@@ -308,18 +303,10 @@
     // Delegated interaction (bound once)
     doc.addEventListener("click", function (e) {
       var opt = e.target.closest("[data-lang]");
-      if (opt) { setLang(opt.getAttribute("data-lang")); closeLangMenus(); return; }
-      var btn = e.target.closest("[data-lang-btn]");
-      if (btn) {
-        var menu = btn.parentNode.querySelector("[data-lang-menu]");
-        var isOpen = menu && menu.getAttribute("data-open") === "true";
-        closeLangMenus();
-        if (menu && !isOpen) { menu.setAttribute("data-open", "true"); btn.setAttribute("aria-expanded", "true"); }
-        return;
-      }
-      closeLangMenus();
+      if (opt) { setLang(opt.getAttribute("data-lang")); return; }
+      var toggle = e.target.closest("[data-lang-toggle]");
+      if (toggle) { setLang(lang === "es" ? "en" : "es"); return; }
     });
-    doc.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLangMenus(); });
   }
 
   function injectA11y() {

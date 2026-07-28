@@ -4,7 +4,14 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/index", "destination": "/", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/templates/:file*", "destination": "/resources", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/resources", "destination": "/api/resources" },
+    { "source": "/resources.html", "destination": "/api/resources" },
+    { "source": "/articles/:slug", "destination": "/api/article?slug=:slug" },
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" }
   ],
   "headers": [
     {

@@ -3,5 +3,7 @@ Allow: /
 Disallow: /uploads/
 Disallow: /build/
 Disallow: /screenshots/
+Disallow: /portal
+Disallow: /templates/
 
 Sitemap: https://prudentialadvocate.com/sitemap.xml
