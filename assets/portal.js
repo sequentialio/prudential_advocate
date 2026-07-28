@@ -217,11 +217,17 @@
           '<br><span class="hint-sm"></span>' +
           '<p class="inq-body" style="margin-top:.5rem;white-space:pre-wrap;display:none"></p></div>' +
           '<button class="btn btn--outline btn--sm" type="button" data-open>Read</button>' +
+          (m.email ? '<a class="btn btn--outline btn--sm" data-mail>Email</a>' : "") +
           '<button class="btn btn--outline btn--sm" type="button" data-del style="color:#A31212;border-color:#A31212">Delete</button>';
         row.querySelector("strong").textContent = who + (m.matter ? " — " + m.matter : "");
         row.querySelector(".hint-sm").textContent =
           fmtWhen(m.created_at) + " · " + m.email + (m.phone ? " · " + m.phone : "") + (m.office ? " · " + m.office : "");
         row.querySelector(".inq-body").textContent = (m.description ? m.description + "\n\n" : "") + m.message;
+        var mail = row.querySelector("[data-mail]");
+        if (mail) {
+          mail.href = "mailto:" + encodeURIComponent(m.email).replace(/%40/g, "@") +
+            "?subject=" + encodeURIComponent("Re: your inquiry to Prudential Advocate");
+        }
         row.querySelector("[data-open]").addEventListener("click", function () {
           var body = row.querySelector(".inq-body");
           body.style.display = body.style.display === "none" ? "block" : "none";
