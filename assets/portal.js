@@ -10,13 +10,26 @@
   var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   var doc = document;
-  var views = { login: q('[data-view="login"]'), list: q('[data-view="list"]'), editor: q('[data-view="editor"]') };
+  var views = {
+    login: q('[data-view="login"]'),
+    list: q('[data-view="list"]'),
+    editor: q('[data-view="editor"]'),
+    inquiries: q('[data-view="inquiries"]'),
+    users: q('[data-view="users"]'),
+    account: q('[data-view="account"]'),
+  };
   var current = null; // article being edited (null = new)
 
   function q(sel) { return doc.querySelector(sel); }
   function show(name) {
     Object.keys(views).forEach(function (k) { views[k].hidden = k !== name; });
     q("[data-signout]").hidden = name === "login";
+    q("[data-tabs]").hidden = name === "login";
+    var tabFor = { list: "articles", editor: "articles", inquiries: "inquiries", users: "users", account: "account" };
+    Array.prototype.forEach.call(doc.querySelectorAll("[data-tab]"), function (b) {
+      if (b.getAttribute("data-tab") === tabFor[name]) b.setAttribute("aria-current", "true");
+      else b.removeAttribute("aria-current");
+    });
     window.scrollTo(0, 0);
   }
   function msg(el, kind, text) {
@@ -42,6 +55,7 @@
     sb.auth.signInWithPassword({ email: f.get("email"), password: f.get("password") }).then(function (r) {
       if (r.error) { msg(q("[data-login-msg]"), "err", "Sign-in failed: " + r.error.message); return; }
       loadList();
+      refreshUnread();
     });
   });
   q("[data-signout]").addEventListener("click", function () {
@@ -163,9 +177,151 @@
     if (!pane.hidden) q("[data-preview-body]").innerHTML = renderMd(form.body_md.value);
   });
 
+  /* ---------------- tabs ---------------- */
+  Array.prototype.forEach.call(doc.querySelectorAll("[data-tab]"), function (b) {
+    b.addEventListener("click", function () {
+      var t = b.getAttribute("data-tab");
+      if (t === "articles") loadList();
+      else if (t === "inquiries") loadInquiries();
+      else if (t === "users") loadUsers();
+      else if (t === "account") showAccount();
+    });
+  });
+
+  /* ---------------- messages (inquiries) ---------------- */
+  function fmtWhen(iso) {
+    var d = new Date(iso);
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) +
+      " " + d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  }
+  function refreshUnread() {
+    sb.from("inquiries").select("id", { count: "exact", head: true }).eq("is_read", false).then(function (r) {
+      var badge = q("[data-unread-badge]");
+      if (r.count > 0) { badge.hidden = false; badge.textContent = r.count + " new"; }
+      else badge.hidden = true;
+    });
+  }
+  function loadInquiries() {
+    sb.from("inquiries").select("*").order("created_at", { ascending: false }).limit(200).then(function (r) {
+      if (r.error) { msg(q("[data-inquiries-msg]"), "err", r.error.message); return; }
+      var wrap = q("[data-inquiry-list]");
+      wrap.innerHTML = "";
+      if (!r.data.length) wrap.innerHTML = '<p class="muted">No messages yet. Contact-form submissions will appear here.</p>';
+      r.data.forEach(function (m) {
+        var row = doc.createElement("div");
+        row.className = "portal-row";
+        row.style.alignItems = "flex-start";
+        var who = (m.first_name + " " + m.last_name).trim() || "(no name)";
+        row.innerHTML =
+          '<div class="grow"><strong></strong> ' + (m.is_read ? "" : '<span class="badge badge--live">New</span>') +
+          '<br><span class="hint-sm"></span>' +
+          '<p class="inq-body" style="margin-top:.5rem;white-space:pre-wrap;display:none"></p></div>' +
+          '<button class="btn btn--outline btn--sm" type="button" data-open>Read</button>' +
+          '<button class="btn btn--outline btn--sm" type="button" data-del style="color:#A31212;border-color:#A31212">Delete</button>';
+        row.querySelector("strong").textContent = who + (m.matter ? " — " + m.matter : "");
+        row.querySelector(".hint-sm").textContent =
+          fmtWhen(m.created_at) + " · " + m.email + (m.phone ? " · " + m.phone : "") + (m.office ? " · " + m.office : "");
+        row.querySelector(".inq-body").textContent = (m.description ? m.description + "\n\n" : "") + m.message;
+        row.querySelector("[data-open]").addEventListener("click", function () {
+          var body = row.querySelector(".inq-body");
+          body.style.display = body.style.display === "none" ? "block" : "none";
+          if (!m.is_read) {
+            sb.from("inquiries").update({ is_read: true }).eq("id", m.id).then(function () {
+              m.is_read = true;
+              var b = row.querySelector(".badge"); if (b) b.remove();
+              refreshUnread();
+            });
+          }
+        });
+        row.querySelector("[data-del]").addEventListener("click", function () {
+          if (!window.confirm("Delete this message permanently?")) return;
+          sb.from("inquiries").delete().eq("id", m.id).then(function (dr) {
+            if (dr.error) { msg(q("[data-inquiries-msg]"), "err", dr.error.message); return; }
+            row.remove();
+            refreshUnread();
+          });
+        });
+        wrap.appendChild(row);
+      });
+      show("inquiries");
+    });
+  }
+
+  /* ---------------- users ---------------- */
+  function adminUsers(payload) {
+    return sb.auth.getSession().then(function (r) {
+      return fetch("/api/admin-users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + (r.data.session ? r.data.session.access_token : ""),
+        },
+        body: JSON.stringify(payload),
+      }).then(function (res) { return res.json().then(function (j) { return { ok: res.ok, data: j }; }); });
+    });
+  }
+  function loadUsers() {
+    adminUsers({ action: "list" }).then(function (r) {
+      if (!r.ok) { msg(q("[data-users-msg]"), "err", r.data.error || "Could not load users."); show("users"); return; }
+      var wrap = q("[data-user-list]");
+      wrap.innerHTML = "";
+      r.data.users.forEach(function (u) {
+        var row = doc.createElement("div");
+        row.className = "portal-row";
+        row.innerHTML =
+          '<div class="grow"><strong></strong><br><span class="hint-sm"></span></div>' +
+          '<button class="btn btn--outline btn--sm" type="button" style="color:#A31212;border-color:#A31212">Remove</button>';
+        row.querySelector("strong").textContent = u.email;
+        row.querySelector(".hint-sm").textContent = u.last_sign_in_at
+          ? "Last sign-in " + fmtWhen(u.last_sign_in_at)
+          : "Has never signed in";
+        row.querySelector("button").addEventListener("click", function () {
+          if (!window.confirm("Remove " + u.email + "? They will no longer be able to sign in.")) return;
+          adminUsers({ action: "delete", user_id: u.id }).then(function (dr) {
+            if (!dr.ok) { msg(q("[data-users-msg]"), "err", dr.data.error); return; }
+            loadUsers();
+          });
+        });
+        wrap.appendChild(row);
+      });
+      show("users");
+    });
+  }
+  var addForm = q("[data-adduser-form]");
+  addForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    adminUsers({ action: "create", email: addForm.email.value.trim(), password: addForm.password.value }).then(function (r) {
+      if (!r.ok) { msg(q("[data-adduser-msg]"), "err", r.data.error); return; }
+      addForm.reset();
+      msg(q("[data-adduser-msg]"), "ok", "User added — share the temporary password with them securely.");
+      loadUsers();
+    });
+  });
+
+  /* ---------------- my account ---------------- */
+  function showAccount() {
+    sb.auth.getUser().then(function (r) {
+      q("[data-account-email]").textContent = r.data.user ? "Signed in as " + r.data.user.email : "";
+      show("account");
+    });
+  }
+  var pwForm = q("[data-password-form]");
+  pwForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (pwForm.password.value !== pwForm.password2.value) {
+      msg(q("[data-password-msg]"), "err", "The two passwords don't match.");
+      return;
+    }
+    sb.auth.updateUser({ password: pwForm.password.value }).then(function (r) {
+      if (r.error) { msg(q("[data-password-msg]"), "err", r.error.message); return; }
+      pwForm.reset();
+      msg(q("[data-password-msg]"), "ok", "Password changed.");
+    });
+  });
+
   /* ---------------- boot ---------------- */
   sb.auth.getSession().then(function (r) {
-    if (r.data.session) loadList();
+    if (r.data.session) { loadList(); refreshUnread(); }
     else show("login");
   });
 })();

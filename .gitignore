@@ -15,3 +15,6 @@ uploads/
 # Claude/dev tooling
 .claude/
 serve.py
+
+# Local secrets — never commit
+.env.local

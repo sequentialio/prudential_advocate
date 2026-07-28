@@ -230,7 +230,29 @@
         return;
       }
 
-      // success
+      // success — store the inquiry (RLS: anonymous users can insert only,
+      // never read) then show the confirmation. The firm reads these in the
+      // staff portal.
+      var fd = new FormData(form);
+      var matterEl = form.querySelector('[name="matter"]:checked');
+      fetch('https://gsvdtgtkhnpqlwhbsfal.supabase.co/rest/v1/inquiries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: 'sb_publishable_riHDkJRmnkIZPmpT3tnKDA_WDNCBoTB',
+          Authorization: 'Bearer sb_publishable_riHDkJRmnkIZPmpT3tnKDA_WDNCBoTB'
+        },
+        body: JSON.stringify({
+          first_name: fd.get('firstName') || '',
+          last_name: fd.get('lastName') || '',
+          email: fd.get('email') || '',
+          phone: fd.get('phone') || '',
+          office: fd.get('office') || '',
+          matter: matterEl ? matterEl.value : '',
+          description: fd.get('description') || '',
+          message: fd.get('message') || ''
+        })
+      }).catch(function () { /* confirmation still shows; firm follows up by phone */ });
       if (summary) summary.removeAttribute('data-show');
       form.querySelector('[data-form-fields]')?.setAttribute('hidden', '');
       if (success) {
