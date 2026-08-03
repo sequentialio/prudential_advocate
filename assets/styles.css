@@ -413,7 +413,7 @@ image-slot { background: repeating-linear-gradient(135deg, #ece6da 0 14px, #e6df
 .scard--photo::before { content: ""; position: absolute; inset: -1px; border-radius: inherit;
   background: linear-gradient(180deg, rgba(26,23,20,.78), rgba(26,23,20,.92)); transition: background .2s var(--ease); }
 .scard--photo:hover { outline: 1px solid rgba(255,255,255,.3); outline-offset: -1px; }
-.scard--photo > * { position: relative; }
+.scard--photo > :not(.scard__link) { position: relative; } /* lift text above the scrim; the stretched link must stay position:absolute */
 .scard--photo h3 { color: #fff; }
 .scard--photo p { color: rgba(255,255,255,.86); }
 .scard--photo .tlink { color: var(--gold); }
