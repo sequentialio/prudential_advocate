@@ -400,9 +400,15 @@ image-slot { background: repeating-linear-gradient(135deg, #ece6da 0 14px, #e6df
   transition: border-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease);
 }
 .scard:hover { border-color: var(--line-2); box-shadow: var(--shadow); transform: translateY(-3px); }
+.scard h3 { margin-top: 0; }
+.scard p { margin-top: .55rem; color: var(--ink-soft); font-size: .98rem; flex: 1; }
+.scard .tlink { margin-top: 1.1rem; }
+.scard__link { position: absolute; inset: 0; border-radius: var(--radius-lg); }
+.scard__link span.vh { position: absolute; }
 /* per-service photo cards — each service gets its own backdrop under a dark
    scrim; text stays AA white-on-dark in both themes (scrim ≥.78 keeps white
-   ≥8:1 and --gold ≥4.5:1 even over a pure-white image region) */
+   ≥8:1 and --gold ≥4.5:1 even over a pure-white image region). Must come
+   AFTER the base .scard text rules: same specificity, source order decides. */
 .scard--photo { background-size: cover; background-position: center; border-color: transparent; overflow: hidden; }
 .scard--photo::before { content: ""; position: absolute; inset: -1px; border-radius: inherit;
   background: linear-gradient(180deg, rgba(26,23,20,.78), rgba(26,23,20,.92)); transition: background .2s var(--ease); }
@@ -412,11 +418,6 @@ image-slot { background: repeating-linear-gradient(135deg, #ece6da 0 14px, #e6df
 .scard--photo p { color: rgba(255,255,255,.86); }
 .scard--photo .tlink { color: var(--gold); }
 .scard--photo .scard__link { z-index: 1; }
-.scard h3 { margin-top: 0; }
-.scard p { margin-top: .55rem; color: var(--ink-soft); font-size: .98rem; flex: 1; }
-.scard .tlink { margin-top: 1.1rem; }
-.scard__link { position: absolute; inset: 0; border-radius: var(--radius-lg); }
-.scard__link span.vh { position: absolute; }
 
 /* alternating (checkerboard) treatment — home services grid */
 .cards--alt .scard:nth-child(2n) { background: var(--ink); border-color: var(--ink); }
