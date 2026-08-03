@@ -70,7 +70,7 @@
     if (dictLoading) { var t = setInterval(function () { if (window.PA_I18N_ES) { clearInterval(t); dict = Object.assign({}, EXTRA_ES, window.PA_I18N_ES); cb && cb(); } }, 40); return; }
     dictLoading = true;
     var s = doc.createElement("script");
-    s.src = "/assets/i18n-es.js?v=3";
+    s.src = "/assets/i18n-es.js?v=4";
     s.onload = function () { dict = Object.assign({}, EXTRA_ES, window.PA_I18N_ES || {}); cb && cb(); };
     s.onerror = function () { dict = Object.assign({}, EXTRA_ES); cb && cb(); };
     doc.head.appendChild(s);

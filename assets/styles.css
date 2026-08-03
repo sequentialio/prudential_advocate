@@ -31,6 +31,8 @@
   /* type */
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans:  "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  /* wordmark only — firm letterhead is Gill Sans MT with spaced capitals */
+  --brand-sans: "Gill Sans", "Gill Sans MT", "Gill Sans Nova", "Source Sans 3", system-ui, sans-serif;
 
   /* metrics */
   --header-h: 78px;
@@ -199,8 +201,8 @@ strong { font-weight: 600; color: var(--ink); }
 .brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--ink); flex: none; }
 .brand__mark { width: auto; height: 38px; flex: none; display: inline-flex; align-items: center; color: var(--brand-red); }
 .brand__mark svg { height: 100%; width: auto; display: block; }
-.brand__name { font-family: var(--sans); font-weight: 500; font-size: 1.18rem; line-height: 1; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
-.brand__sub { display: block; font-family: var(--sans); font-weight: 500; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-top: 0; }
+.brand__name { font-family: var(--brand-sans); font-weight: 400; font-size: 1.14rem; line-height: 1; letter-spacing: .28em; text-transform: uppercase; white-space: nowrap; }
+.brand__sub { display: block; font-family: var(--brand-sans); font-weight: 400; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin-top: 0; }
 
 .nav__primary { display: flex; align-items: center; gap: .35rem; margin-left: auto; }
 .nav__link {
@@ -274,7 +276,7 @@ strong { font-weight: 600; color: var(--ink); }
 @media (max-width: 600px) {
   :root { --header-h: 64px; }
   .brand__sub { display: none; }
-  .brand__name { font-size: .92rem; letter-spacing: .04em; }
+  .brand__name { font-size: .88rem; letter-spacing: .16em; }
   .brand__mark { height: 28px; }
   .brand { gap: .5rem; }
 }
@@ -398,6 +400,18 @@ image-slot { background: repeating-linear-gradient(135deg, #ece6da 0 14px, #e6df
   transition: border-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease);
 }
 .scard:hover { border-color: var(--line-2); box-shadow: var(--shadow); transform: translateY(-3px); }
+/* per-service photo cards — each service gets its own backdrop under a dark
+   scrim; text stays AA white-on-dark in both themes (scrim ≥.78 keeps white
+   ≥8:1 and --gold ≥4.5:1 even over a pure-white image region) */
+.scard--photo { background-size: cover; background-position: center; border-color: transparent; overflow: hidden; }
+.scard--photo::before { content: ""; position: absolute; inset: -1px; border-radius: inherit;
+  background: linear-gradient(180deg, rgba(26,23,20,.78), rgba(26,23,20,.92)); transition: background .2s var(--ease); }
+.scard--photo:hover { outline: 1px solid rgba(255,255,255,.3); outline-offset: -1px; }
+.scard--photo > * { position: relative; }
+.scard--photo h3 { color: #fff; }
+.scard--photo p { color: rgba(255,255,255,.86); }
+.scard--photo .tlink { color: var(--gold); }
+.scard--photo .scard__link { z-index: 1; }
 .scard h3 { margin-top: 0; }
 .scard p { margin-top: .55rem; color: var(--ink-soft); font-size: .98rem; flex: 1; }
 .scard .tlink { margin-top: 1.1rem; }
@@ -981,6 +995,7 @@ html.pa-dark .band-navy .cred__cell,
 html.pa-dark .site-footer,
 html.pa-dark .hero { background: #100D0B; }
 html.pa-dark .svc-help .sidebar[style*="var(--ink)"] { background: #100D0B !important; border-color: #2a241f !important; }
+html.pa-dark .tcard[style*="var(--ink)"] { background: #100D0B !important; }
 /* notice callout: cream box + fixed dark text don't work on a dark page — tint it dark */
 html.pa-dark .notice { background: rgba(227,37,37,.10); border-color: rgba(255,110,99,.30); color: var(--ink-2); }
 

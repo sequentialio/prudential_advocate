@@ -18,3 +18,4 @@ serve.py
 
 # Local secrets — never commit
 .env.local
+__pycache__/

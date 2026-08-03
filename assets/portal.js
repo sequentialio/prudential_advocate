@@ -16,6 +16,7 @@
     editor: q('[data-view="editor"]'),
     inquiries: q('[data-view="inquiries"]'),
     users: q('[data-view="users"]'),
+    settings: q('[data-view="settings"]'),
     account: q('[data-view="account"]'),
   };
   var current = null; // article being edited (null = new)
@@ -25,7 +26,7 @@
     Object.keys(views).forEach(function (k) { views[k].hidden = k !== name; });
     q("[data-signout]").hidden = name === "login";
     q("[data-tabs]").hidden = name === "login";
-    var tabFor = { list: "articles", editor: "articles", inquiries: "inquiries", users: "users", account: "account" };
+    var tabFor = { list: "articles", editor: "articles", inquiries: "inquiries", users: "users", settings: "settings", account: "account" };
     Array.prototype.forEach.call(doc.querySelectorAll("[data-tab]"), function (b) {
       if (b.getAttribute("data-tab") === tabFor[name]) b.setAttribute("aria-current", "true");
       else b.removeAttribute("aria-current");
@@ -184,6 +185,7 @@
       if (t === "articles") loadList();
       else if (t === "inquiries") loadInquiries();
       else if (t === "users") loadUsers();
+      else if (t === "settings") loadSettings();
       else if (t === "account") showAccount();
     });
   });
@@ -302,6 +304,43 @@
       msg(q("[data-adduser-msg]"), "ok", "User added — share the temporary password with them securely.");
       loadUsers();
     });
+  });
+
+  /* ---------------- settings ---------------- */
+  var settingsForm = q("[data-settings-form]");
+  function loadSettings() {
+    sb.from("portal_settings").select("value").eq("key", "inquiry_forward_email").maybeSingle().then(function (r) {
+      if (r.error) {
+        show("settings");
+        msg(q("[data-settings-msg]"), "err",
+          "Settings storage isn't set up yet — run scripts/sql/2026-08-portal-settings.sql in Supabase (see launch checklist).");
+        return;
+      }
+      settingsForm.forward_email.value = r.data ? r.data.value : "";
+      show("settings");
+    });
+  }
+  settingsForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var value = settingsForm.forward_email.value.trim();
+    var parts = value ? value.split(",").map(function (s) { return s.trim(); }).filter(Boolean) : [];
+    if (parts.length > 5) {
+      msg(q("[data-settings-msg]"), "err", "Please use at most 5 addresses.");
+      return;
+    }
+    for (var i = 0; i < parts.length; i++) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(parts[i])) {
+        msg(q("[data-settings-msg]"), "err", '"' + parts[i] + '" doesn’t look like an email address.');
+        return;
+      }
+    }
+    sb.from("portal_settings")
+      .upsert({ key: "inquiry_forward_email", value: parts.join(", "), updated_at: new Date().toISOString() })
+      .then(function (r) {
+        if (r.error) { msg(q("[data-settings-msg]"), "err", r.error.message); return; }
+        msg(q("[data-settings-msg]"), "ok",
+          parts.length ? "Saved — new messages will be forwarded to " + parts.join(", ") + "." : "Saved — forwarding is off.");
+      });
   });
 
   /* ---------------- my account ---------------- */

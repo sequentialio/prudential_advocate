@@ -230,18 +230,14 @@
         return;
       }
 
-      // success — store the inquiry (RLS: anonymous users can insert only,
-      // never read) then show the confirmation. The firm reads these in the
-      // staff portal.
+      // success — send to the server route, which stores the inquiry and
+      // forwards a copy by email if the firm configured an address in the
+      // staff portal. The firm reads these in the staff portal either way.
       var fd = new FormData(form);
       var matterEl = form.querySelector('[name="matter"]:checked');
-      fetch('https://gsvdtgtkhnpqlwhbsfal.supabase.co/rest/v1/inquiries', {
+      fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          apikey: 'sb_publishable_riHDkJRmnkIZPmpT3tnKDA_WDNCBoTB',
-          Authorization: 'Bearer sb_publishable_riHDkJRmnkIZPmpT3tnKDA_WDNCBoTB'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           first_name: fd.get('firstName') || '',
           last_name: fd.get('lastName') || '',
@@ -250,7 +246,8 @@
           office: fd.get('office') || '',
           matter: matterEl ? matterEl.value : '',
           description: fd.get('description') || '',
-          message: fd.get('message') || ''
+          message: fd.get('message') || '',
+          company_website: fd.get('company_website') || ''
         })
       }).catch(function () { /* confirmation still shows; firm follows up by phone */ });
       if (summary) summary.removeAttribute('data-show');
@@ -374,7 +371,7 @@
     // load audit enhancements (accessibility view modes + EN/ES language + demo nav)
     if (!document.querySelector('script[data-pa-enhance]')) {
       var ph = document.createElement('script');
-      ph.src = '/assets/enhance.js?v=3';
+      ph.src = '/assets/enhance.js?v=4';
       ph.setAttribute('data-pa-enhance', '');
       document.body.appendChild(ph);
     }

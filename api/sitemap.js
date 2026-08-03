@@ -2,7 +2,7 @@ const { fetchPublished, isoDay } = require("./_lib");
 
 const STATIC_URLS = [
   "", "about.html", "services.html", "trust-litigation.html", "will-contest.html",
-  "certificate-of-independent-review.html", "trust-administration.html", "probate.html",
+  "certificate-of-independent-review.html", "trust-administration-probate.html", "conservatorships.html",
   "estate-planning.html", "team.html", "robbie-heaven.html", "kevin-allec-arreola.html",
   "abby-taylor.html", "melissa-penaflor.html", "jackie-graciano.html", "kaitlyn-gurule.html",
   "micah-knopf.html", "tristan-posner.html", "resources.html",

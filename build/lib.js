@@ -26,7 +26,7 @@ globalThis.makeLib = async function () {
     "name":"Prudential Advocate, APC","url":BASE,
     "description":"California trust and estate litigation firm in Century City and Irvine.",
     "areaServed":["Los Angeles County","Orange County","California"],
-    "knowsAbout":["Trust Litigation","Will Contests","Probate","Trust Administration","Estate Planning","Certificate of Independent Review"],
+    "knowsAbout":["Trust Litigation","Will Contests","Probate","Trust Administration","Estate Planning","Conservatorships","Certificate of Independent Review"],
     "address":[
       {"@type":"PostalAddress","streetAddress":"1925 Century Park East, Suite 1700","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90067","addressCountry":"US"},
       {"@type":"PostalAddress","streetAddress":"3333 Michelson Drive, Suite 300","addressLocality":"Irvine","addressRegion":"CA","postalCode":"92612","addressCountry":"US"}
