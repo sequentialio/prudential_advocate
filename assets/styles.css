@@ -575,7 +575,8 @@ image-slot { background: repeating-linear-gradient(135deg, #ece6da 0 14px, #e6df
 fieldset { border: 0; padding: 0; margin: 0 0 1.2rem; }
 fieldset legend { padding: 0; margin-bottom: .6rem; }
 .radio-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: .5rem; }
-@media (max-width: 540px) { .radio-grid { grid-template-columns: 1fr; } }
+.radio-grid--3 { grid-template-columns: repeat(3,1fr); }
+@media (max-width: 540px) { .radio-grid, .radio-grid--3 { grid-template-columns: 1fr; } }
 .opt-card { display: flex; align-items: center; gap: .65rem; padding: .7rem .85rem; border: 1.5px solid var(--line-2); border-radius: var(--radius); cursor: pointer; min-height: 48px; background: var(--ivory); transition: border-color .15s, background .15s; }
 .opt-card:hover { border-color: var(--ink-soft); }
 .opt-card input { width: 20px; height: 20px; accent-color: var(--ink); flex: none; }
