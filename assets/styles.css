@@ -199,10 +199,10 @@ strong { font-weight: 600; color: var(--ink); }
   display: flex; align-items: center; gap: 1.5rem;
 }
 .brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--ink); flex: none; }
-.brand__mark { width: auto; height: 38px; flex: none; display: inline-flex; align-items: center; color: var(--brand-red); }
+.brand__mark { width: auto; height: 33px; flex: none; display: inline-flex; align-items: center; color: var(--brand-red); }
 .brand__mark svg { height: 100%; width: auto; display: block; }
-.brand__name { font-family: var(--brand-sans); font-weight: 400; font-size: 1.14rem; line-height: 1; letter-spacing: .28em; text-transform: uppercase; white-space: nowrap; }
-.brand__sub { display: block; font-family: var(--brand-sans); font-weight: 400; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin-top: 0; }
+.brand__name { display: block; font-family: var(--brand-sans); font-weight: 400; font-size: 1.03rem; line-height: 1; letter-spacing: .28em; text-transform: uppercase; white-space: nowrap; }
+.brand__sub { display: block; font-family: var(--brand-sans); font-weight: 400; font-size: .6rem; line-height: 1; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin-top: .16rem; }
 
 .nav__primary { display: flex; align-items: center; gap: .35rem; margin-left: auto; }
 .nav__link {

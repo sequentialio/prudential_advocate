@@ -346,6 +346,14 @@
     window.addEventListener('scroll', upd, { passive: true });
   }
 
+  /* ---------- Address links: open the platform's native maps app ---------- */
+  function initMapsLinks() {
+    if (!/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent)) return;
+    Array.prototype.forEach.call(document.querySelectorAll('a[data-maps-q]'), function (a) {
+      a.href = 'https://maps.apple.com/?q=' + encodeURIComponent(a.getAttribute('data-maps-q'));
+    });
+  }
+
   /* ---------- Active nav marker ---------- */
   function initActiveNav() {
     var page = document.body.getAttribute('data-page');
@@ -363,6 +371,7 @@
     initHero();
     initReveal();
     initForm();
+    initMapsLinks();
     initActiveNav();
     initHeaderScroll();
     // current year
