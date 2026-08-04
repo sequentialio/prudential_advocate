@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="assets/styles.css?v=8">
+  <link rel="stylesheet" href="assets/styles.css?v=9">
   <style>
     [hidden] { display: none !important; }
     .portal-wrap { max-width: 960px; margin: 0 auto; padding: 2.5rem clamp(1.1rem,4vw,2.5rem) 4rem; }
@@ -38,6 +38,7 @@
   </style>
 </head>
 <body data-page="portal">
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header">
   <div class="container">
     <nav class="nav" aria-label="Primary">
@@ -56,6 +57,7 @@
 </header>
 
 <main id="main" class="portal-wrap">
+  <h1 class="vh">Prudential Advocate Staff Portal</h1>
 
   <!-- ============ TABS (visible when signed in) ============ -->
   <nav class="portal-tabs" data-tabs hidden aria-label="Portal sections" style="display:flex;gap:.4rem;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:.8rem">
@@ -68,7 +70,7 @@
 
   <!-- ============ LOGIN ============ -->
   <section data-view="login" hidden>
-    <h1 style="font-size:1.6rem">Sign in</h1>
+    <h2 style="font-size:1.6rem">Sign in</h2>
     <div class="portal-card" style="max-width:420px">
       <form data-login-form>
         <label class="portal-field"><span>Email</span><input type="email" name="email" autocomplete="username" required></label>
@@ -82,7 +84,7 @@
   <!-- ============ ARTICLE LIST ============ -->
   <section data-view="list" hidden>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1rem;justify-content:space-between">
-      <h1 style="font-size:1.6rem">Your articles</h1>
+      <h2 style="font-size:1.6rem">Your articles</h2>
       <button class="btn btn--primary" type="button" data-new-article>New article</button>
     </div>
     <p class="muted" style="margin-top:.5rem">Published articles appear on the <a href="/resources" target="_blank" rel="noopener">Resources page</a> within a few minutes. Unpublished drafts are only visible here.</p>
@@ -92,7 +94,7 @@
 
   <!-- ============ MESSAGES (contact-form inquiries) ============ -->
   <section data-view="inquiries" hidden>
-    <h1 style="font-size:1.6rem">Website messages</h1>
+    <h2 style="font-size:1.6rem">Website messages</h2>
     <p class="muted" style="margin-top:.5rem">Submissions from the site&rsquo;s contact form. Newest first. These may contain personal information &mdash; handle per firm policy.</p>
     <div class="portal-list" data-inquiry-list></div>
     <p class="portal-msg" data-inquiries-msg></p>
@@ -100,7 +102,7 @@
 
   <!-- ============ USERS ============ -->
   <section data-view="users" hidden>
-    <h1 style="font-size:1.6rem">Portal users</h1>
+    <h2 style="font-size:1.6rem">Portal users</h2>
     <p class="muted" style="margin-top:.5rem">Everyone listed can sign in, publish articles, read messages, and manage users. Share the temporary password securely &mdash; the person should change it under &ldquo;My account&rdquo; after first sign-in.</p>
     <div class="portal-card" style="max-width:520px">
       <form data-adduser-form>
@@ -116,7 +118,7 @@
 
   <!-- ============ SETTINGS ============ -->
   <section data-view="settings" hidden>
-    <h1 style="font-size:1.6rem">Settings</h1>
+    <h2 style="font-size:1.6rem">Settings</h2>
     <p class="muted" style="margin-top:.5rem">New contact-form messages always appear under Messages. You can also have each one forwarded to email so nobody has to check the portal every day.</p>
     <div class="portal-card" style="max-width:520px">
       <form data-settings-form>
@@ -131,7 +133,7 @@
 
   <!-- ============ MY ACCOUNT ============ -->
   <section data-view="account" hidden>
-    <h1 style="font-size:1.6rem">My account</h1>
+    <h2 style="font-size:1.6rem">My account</h2>
     <p class="muted" style="margin-top:.5rem" data-account-email></p>
     <div class="portal-card" style="max-width:420px">
       <form data-password-form>
@@ -146,7 +148,7 @@
   <!-- ============ EDITOR ============ -->
   <section data-view="editor" hidden>
     <p><button class="tlink" type="button" data-back style="background:none;border:0;cursor:pointer;font:inherit;color:var(--gold-ink);font-weight:600">&larr; Back to all articles</button></p>
-    <h1 style="font-size:1.6rem;margin-top:.6rem" data-editor-title>New article</h1>
+    <h2 style="font-size:1.6rem;margin-top:.6rem" data-editor-title>New article</h2>
     <div class="portal-card">
       <form data-editor-form>
         <label class="portal-field"><span>Title</span><input name="title" required maxlength="140"></label>

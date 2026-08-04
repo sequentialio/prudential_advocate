@@ -380,7 +380,7 @@
     // load audit enhancements (accessibility view modes + EN/ES language + demo nav)
     if (!document.querySelector('script[data-pa-enhance]')) {
       var ph = document.createElement('script');
-      ph.src = '/assets/enhance.js?v=4';
+      ph.src = '/assets/enhance.js?v=5';
       ph.setAttribute('data-pa-enhance', '');
       document.body.appendChild(ph);
     }
