@@ -27,6 +27,12 @@ function scrape(slug) {
   const metaBits = metaRaw.replace(/<span class="dot"[^>]*><\/span>/g, "·")
     .replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().split("·").map(s => s.trim()).filter(Boolean).slice(0, 3);
   const body = html.match(/<article[^>]*>([\s\S]*?)<\/article>/)[1]
+    // web-only furniture: the Download PDF button, the "not legal advice" notice
+    // (the PDF footer carries the same text), and the "All resources" back-link
+    .replace(/<p class="no-print"[\s\S]*?<\/p>/g, "")
+    .replace(/<p class="notice[\s\S]*?<\/p>/g, "")
+    .replace(/<p[^>]*>\s*<a class="tlink"[\s\S]*?<\/p>/g, "")
+    .replace(/<svg[\s\S]*?<\/svg>/g, "")
     .replace(/\s*class="[^"]*"/g, "").replace(/\s*style="[^"]*"/g, "");
   return { title, meta: metaBits.join(" · "), body };
 }
