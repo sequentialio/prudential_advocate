@@ -1,6 +1,10 @@
--- Portal settings (key/value). Run once in the Supabase SQL editor
--- (project gsvdtgtkhnpqlwhbsfal). Used by the /portal Settings tab and
--- api/contact.js (inquiry email forwarding).
+-- STATUS: already applied 2026-08-03 via the Supabase management API. Kept
+-- here only as a historical record of the schema — do NOT re-run as-is
+-- against prod (the `create table if not exists` / policy blocks are safe
+-- to re-run, but there is no need to).
+--
+-- Portal settings (key/value). Used by the /portal Settings tab and
+-- api/contact.js (inquiry email forwarding). Project gsvdtgtkhnpqlwhbsfal.
 create table if not exists public.portal_settings (
   key text primary key,
   value text not null default '',

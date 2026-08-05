@@ -1,6 +1,5 @@
-# Internal / build artifacts — must NOT be deployed to the public web root.
-# (uploads/ contains internal planning docs; build/ has templates + scripts.)
+# Internal / dev-only artifacts — must NOT be deployed to the public web root.
+# (These are local scratch dirs; safe to keep excluded even if regenerated.)
 uploads/
-build/
 screenshots/
 .image-slots.state.json
