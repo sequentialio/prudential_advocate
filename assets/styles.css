@@ -584,11 +584,12 @@ fieldset legend { padding: 0; margin-bottom: .6rem; }
 .error-summary ul { margin-top: .6rem; display: grid; gap: .3rem; }
 .error-summary a { color: var(--error); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 
-.form-success { display: none; background: #EEF6F0; border: 1.5px solid var(--green); border-left-width: 5px; border-radius: var(--radius-lg); padding: 1.6rem 1.6rem; }
+.form-success { display: none; background: var(--ivory); border: 1px solid var(--line-2); border-radius: var(--radius-lg); padding: clamp(1.4rem,3vw,2.2rem); box-shadow: var(--shadow-sm); }
 .form-success[data-show="true"] { display: block; }
-.form-success h2 { color: var(--green); display: flex; align-items: center; gap: .6rem; }
-.form-success .ic { width: 26px; height: 26px; flex: none; }
+.form-success h2 { color: var(--ink); display: flex; align-items: center; gap: .6rem; }
+.form-success .ic { width: 26px; height: 26px; flex: none; color: var(--gold-ink); }
 .form-success p { margin-top: .6rem; color: var(--ink-2); }
+.form-wrap[hidden] { display: none !important; }
 
 /* ---------- footer ---------- */
 .site-footer { background: var(--ink); color: rgba(255,255,255,.78); }

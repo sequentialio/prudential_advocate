@@ -251,7 +251,7 @@
         })
       }).catch(function () { /* confirmation still shows; firm follows up by phone */ });
       if (summary) summary.removeAttribute('data-show');
-      form.querySelector('[data-form-fields]')?.setAttribute('hidden', '');
+      form.setAttribute('hidden', ''); // hide the whole card, not just the fields, or an empty white box remains
       if (success) {
         success.setAttribute('data-show', 'true');
         success.setAttribute('tabindex', '-1');
