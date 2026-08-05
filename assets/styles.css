@@ -735,7 +735,8 @@ fieldset legend { padding: 0; margin-bottom: .6rem; }
   *, *::before, *::after { box-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body { background: #fff; color: #1a1a1a; font-size: 11.5pt; }
   .skip-link, .nav__toggle, .mnav, .hero__cta, .scard__link, .tcard__link,
-  .error-summary, .honeypot, .nav__menu { display: none !important; }
+  .error-summary, .honeypot, .nav__menu, .no-print, .callbtn, .nav__langbtn,
+  .pa-fab, section[aria-labelledby="cta-h"], .article-body .tlink { display: none !important; }
   .site-header { position: static; background: #fff; border-bottom: 1px solid #bbb; backdrop-filter: none; }
   .nav__primary, .nav__utility .btn { display: none !important; }
   a { color: #1a1a1a; text-decoration: underline; }
