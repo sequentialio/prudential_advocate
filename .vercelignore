@@ -3,3 +3,7 @@
 uploads/
 screenshots/
 .image-slots.state.json
+
+# Internal docs and local-only build/dev scripts (api/ reads templates/, never these)
+docs/
+scripts/
